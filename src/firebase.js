@@ -3,13 +3,14 @@ import { getAuth, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyAC_nVjC4mR1KiJh5it46zLdbVIS_FyhWs",
   authDomain: "masjidalehsanss4.firebaseapp.com",
   databaseURL: "https://masjidalehsanss4-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "masjidalehsanss4",
   storageBucket: "masjidalehsanss4.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  messagingSenderId: "227744099682",
+  appId: "1:227744099682:web:6e83285166ca3bb754103b",
+  measurementId: "G-NYP526CJ2W"
 };
 
 const app = initializeApp(firebaseConfig);
