@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Rasmi Masjid Al Ehsan SS4A Kelana Jaya</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="portal-wrapper">
+    <!-- Top Accessibility & Admin Utility Bar -->
+    <div class="top-utility-bar">
+      <div class="font-controls" aria-label="Kawalan Saiz Tulisan">
+        <span>Saiz Tulisan:</span>
+        <button type="button" class="util-btn active" data-size="normal" onclick="setFontSize('normal')">A</button>
+        <button type="button" class="util-btn" data-size="large" onclick="setFontSize('large')">A+</button>
+        <button type="button" class="util-btn" data-size="xlarge" onclick="setFontSize('xlarge')">A++</button>
+      </div>
+
+      <div class="auth-controls">
+        <span id="roleBadge" class="role-pill">Paparan Jemaah</span>
+        <button type="button" id="authTriggerBtn" class="admin-login-btn">Log Masuk AJK / Admin</button>
+      </div>
+    </div>
+
+    <!-- Early-2000s Masjid Portal Header -->
+    <header class="portal-header">
+      <div class="header-text">
+        <div class="portal-subtitle">PORTAL KOMUNITI &amp; KARIAH</div>
+        <h1>MASJID AL EHSAN SS4A</h1>
+        <p>Jalan SS 4A/4, Kelana Jaya, 47301 Petaling Jaya, Selangor • Tel: 03-7877 6676</p>
+      </div>
+    </header>
+
+    <!-- Classic Horizontal Navigation Tabs -->
+    <nav class="portal-nav" aria-label="Menu Utama">
+      <button type="button" class="nav-tab active">Direktori Keluarga Kariah</button>
+      <button type="button" class="nav-tab standby" onclick="showStandbyNotice('Blog &amp; Pengumuman Masjid')">
+        Blog &amp; Pengumuman <span class="tag-standby">Akan Datang</span>
+      </button>
+      <button type="button" class="nav-tab standby" onclick="showStandbyNotice('Jadual Kuliah &amp; Aktiviti')">
+        Jadual Kuliah <span class="tag-standby">Akan Datang</span>
+      </button>
+      <button type="button" class="nav-tab standby" onclick="showStandbyNotice('Info Khairat Kematian')">
+        Khairat Kematian <span class="tag-standby">Akan Datang</span>
+      </button>
+    </nav>
+
+    <!-- Notice Ticker Strip -->
+    <div class="announcement-strip">
+      <span class="strip-label">MAKLUMAN</span>
+      <span class="strip-text">
+        Selamat datang ke Direktori Kariah Masjid Al Ehsan SS4A. Gunakan ruangan carian di bawah untuk mencari dan menghubungi jiran tetangga jika berlaku kecemasan atau urusan kariah.
+      </span>
+    </div>
+
+    <!-- Main Page Masjid Photo Showcase Banners -->
+    <section class="photo-showcase" aria-label="Galeri Gambar Masjid">
+      <div class="photo-card">
+        <!-- Gantikan div .photo-placeholder ini dengan <img src="assets/masjid-utama.jpg" alt="Bangunan Utama Masjid Al Ehsan SS4A"> -->
+        <img src="assets/main_masjid.jpg" alt="Masjid Al Ehsan SS4A">
+        <div class="photo-caption">Pemandangan Hadapan Masjid Al Ehsan, Jalan SS 4A/4</div>
+      </div>
+
+      <div class="photo-card">
+        <!-- Gantikan div .photo-placeholder ini dengan <img src="assets/aktiviti-kariah.jpg" alt="Aktiviti Jemaah Masjid Al Ehsan"> -->
+        <img src="assets/activity1.jpg" alt="Masjid Al Ehsan SS4A">
+        <div class="photo-caption">Suasana Solat Berjemaah &amp; Program Kemasyarakatan</div>
+      </div>
+    </section>
+
+    <main class="portal-content">
+      <!-- Admin Form Panel (Hidden unless Admin is logged in) -->
+      <section id="adminEditorPanel" class="portal-box admin-box hidden">
+        <div class="box-header">
+          <h2 id="formLegend">Tambah Rekod Keluarga Baharu (Mod Admin)</h2>
+        </div>
+        <div class="box-body">
+          <form id="familyForm" class="accessible-form">
+            <input type="hidden" id="editFamilyId" />
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="headOfHousehold">Nama Ketua Keluarga *</label>
+                <input id="headOfHousehold" type="text" required placeholder="Contoh: Haji Ahmad bin Sulaiman" />
+              </div>
+
+              <div class="form-group">
+                <label for="phoneNumber">No. Telefon (Untuk Call / WhatsApp) *</label>
+                <input id="phoneNumber" type="tel" required placeholder="Contoh: 0123456789" />
+              </div>
+
+              <div class="form-group">
+                <label for="houseNumber">No. Rumah *</label>
+                <input id="houseNumber" type="text" required placeholder="Contoh: No. 14" />
+              </div>
+
+              <div class="form-group">
+                <label for="numDependents">Bilangan Tanggungan *</label>
+                <input id="numDependents" type="number" min="0" max="30" required placeholder="Contoh: 4" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Alamat Rumah (Jalan / Seksyen) *</label>
+              <input id="address" type="text" required placeholder="Contoh: Jalan SS 4A/4, Kelana Jaya, 47301 Petaling Jaya" />
+            </div>
+
+            <div class="form-group">
+              <label for="householdMembers">Senarai Ahli Isi Rumah (Pisahkan dengan tanda koma)</label>
+              <textarea id="householdMembers" rows="2" placeholder="Contoh: Puan Siti Aminah, Muhammad Amirul, Nur Aisyah"></textarea>
+            </div>
+
+            <div class="form-buttons">
+              <button type="submit" class="btn-green">Simpan Rekod Keluarga</button>
+              <button type="button" id="cancelEditBtn" class="btn-secondary hidden">Batal Kemaskini</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Directory Search & Listing Box -->
+      <section class="portal-box">
+        <div class="box-header directory-header">
+          <h2>Direktori Keluarga Kariah SS4 Kelana Jaya</h2>
+          <span id="recordCountStatus" class="count-badge">0 Keluarga</span>
+        </div>
+
+        <div class="box-body">
+          <!-- Large Accessible Search Bar -->
+          <div class="search-panel">
+            <label for="searchInput" class="search-label">Carian Pantas Jiran Tetangga:</label>
+            <div class="search-row">
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Taip nama ketua keluarga, ahli rumah, no. rumah, atau nama jalan..."
+              />
+              <button type="button" id="clearSearchBtn" class="btn-secondary">Padam Carian</button>
+            </div>
+          </div>
+
+          <div id="dbConnectionStatus" class="connection-note">Menyambung ke pangkalan data...</div>
+
+          <!-- High-Contrast Directory Table (Auto-stacks into large cards on mobile) -->
+          <div class="table-responsive">
+            <table class="kariah-table">
+              <thead>
+                <tr>
+                  <th>No. Rumah</th>
+                  <th>Ketua Keluarga</th>
+                  <th>Ahli Isi Rumah</th>
+                  <th>Alamat</th>
+                  <th>Tanggungan</th>
+                  <th>Hubungi Jiran</th>
+                  <th id="adminActionHeader" class="hidden">Tindakan Admin</th>
+                </tr>
+              </thead>
+              <tbody id="familyTableBody">
+                <tr>
+                  <td colspan="7" class="empty-state">Memuatkan senarai keluarga kariah...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Classic Early-2000s Portal Footer -->
+    <footer class="portal-footer">
+      <p><strong>Masjid Al Ehsan SS4A Kelana Jaya</strong> — Sistem Pengurusan Direktori Kariah</p>
+      <p class="footer-sub">Paparan Optimum untuk Komputer &amp; Telefon Bimbit • Bantuan Kecemasan Kejiranan</p>
+    </footer>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div id="loginModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="modal-card">
+      <div class="box-header">
+        <h3 id="loginModalTitle">Log Masuk AJK / Admin Masjid</h3>
+        <button type="button" class="close-modal-btn" onclick="closeLoginModal()" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="box-body">
+        <p class="modal-desc">Sila masukkan e-mel dan kata laluan pentadbir untuk menambah atau mengemaskini maklumat keluarga.</p>
+        <form id="adminLoginForm" class="accessible-form">
+          <div class="form-group">
+            <label for="adminEmail">E-mel Admin</label>
+            <input id="adminEmail" type="email" required placeholder="admin@masjidalehsan.my" />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Kata Laluan</label>
+            <input id="adminPassword" type="password" required />
+          </div>
+          <p id="loginErrorMsg" class="error-banner hidden"></p>
+          <div class="form-buttons">
+            <button type="submit" class="btn-green">Log Masuk</button>
+            <button type="button" class="btn-secondary" onclick="closeLoginModal()">Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
